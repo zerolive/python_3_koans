@@ -17,6 +17,12 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
+  malformed_triangle = (a+b < c or b+c < a or a+c < b)
+  if malformed_triangle: raise TriangleError
+
+  any_side_is_less_than_zero = (a <= 0 or b <= 0 or c <= 0)
+  if any_side_is_less_than_zero: raise TriangleError
+
   is_equlateral = (a == b and b == c)
   is_isosceles = (a == b or b == c or c == a)
 
