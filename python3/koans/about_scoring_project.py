@@ -33,8 +33,39 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    result = 0
+
+    no_rolls = (len(dice) == 0)
+    if no_rolls: return result
+
+    for roll in dice:
+        if roll == 5: result += 50
+        if roll == 1: result += 100
+
+    ones = dice.count(1)
+    if ones >= 3:
+        result -= 300
+        result += 1000
+
+    fives = dice.count(5)
+    if fives >= 3:
+        result -= 150
+        result += 500
+
+    result += normal_triples(dice)
+
+    return result
+
+def normal_triples(dice):
+    normal_numbers = [2, 3, 4, 6]
+    result = 0
+
+    for number in normal_numbers:
+        is_triple = (dice.count(number) >= 3)
+        if is_triple:
+            result += (number * 100)
+
+    return result
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
