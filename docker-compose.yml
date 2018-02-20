@@ -1,6 +1,6 @@
 version: '3'
 services:
-  koans3:
+  python3:
     build: ./python3
     volumes:
       - ./python3:/python3
